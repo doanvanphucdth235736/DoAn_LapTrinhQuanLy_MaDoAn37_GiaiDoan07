@@ -18,6 +18,7 @@ namespace QuanLyPhongTroTheoThang.Forms
         public frmUser()
         {
             InitializeComponent();
+            dgvUser.SelectionChanged += dgvUser_SelectionChanged;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace QuanLyPhongTroTheoThang.Forms
         private void LoadPositions()
         {
             cboPosition.Items.Clear();
-            cboPosition.Items.AddRange(new string[] { "Chủ trọ", "Nhân viên" });
+            cboPosition.Items.AddRange(new string[] {"Chủ trọ", "Quản lý", "Nhân viên" });
             cboPosition.SelectedIndex = 0;
         }
 
@@ -52,7 +53,6 @@ namespace QuanLyPhongTroTheoThang.Forms
 
             dgvUser.DataSource = users;
 
-            // Định dạng tiêu đề cột
             dgvUser.Columns["UserID"].HeaderText = "ID";
             dgvUser.Columns["FullName"].HeaderText = "Họ và Tên";
             dgvUser.Columns["Position"].HeaderText = "Chức Vụ";
@@ -130,7 +130,6 @@ namespace QuanLyPhongTroTheoThang.Forms
                         Position = cboPosition.Text,
                         Username = txtUserName.Text,
                         Password = txtPassword.Text,
-                        // Tự động phân quyền Role dựa trên chức vụ
                         Role = (cboPosition.Text == "Chủ trọ" || cboPosition.Text == "Quản lý") ? "Admin" : "Staff"
                     };
                     context.Users.Add(newUser);

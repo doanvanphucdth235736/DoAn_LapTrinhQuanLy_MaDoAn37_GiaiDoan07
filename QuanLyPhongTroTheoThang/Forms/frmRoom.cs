@@ -171,7 +171,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             cmbStatus.Items.Clear();
             cmbStatus.Items.Add("Trống");
             cmbStatus.Items.Add("Đã thuê");
-            cmbStatus.Items.Add("Đã cọc");
+            cmbStatus.Items.Add("Đã đặt trước");
 
             dgvRoom.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRoom.ClearSelection();
@@ -385,7 +385,7 @@ namespace QuanLyPhongTroTheoThang.Forms
                             MessageBox.Show("Nhập thành công!");
                             LoadGrid();
                         }
-                        catch (System.Data.Entity.Validation.DbEntityValidationException ex) // Nếu dùng EF6
+                        catch (System.Data.Entity.Validation.DbEntityValidationException ex) 
                         {
                             foreach (var eve in ex.EntityValidationErrors)
                             {
@@ -396,7 +396,6 @@ namespace QuanLyPhongTroTheoThang.Forms
                 }
                 catch (Exception ex)
                 {
-                    // HIỂN THỊ LỖI CHI TIẾT TỪ DATABASE
                     string error = ex.Message;
                     if (ex.InnerException != null)
                         error += "\nChi tiết: " + ex.InnerException.InnerException?.Message;
@@ -474,7 +473,7 @@ namespace QuanLyPhongTroTheoThang.Forms
 
                 if (status == "Đã thuê")
                     e.CellStyle.ForeColor = Color.Red;
-                else if (status == "Đã cọc")
+                else if (status == "Đã đặt trước")
                     e.CellStyle.ForeColor = Color.Orange;
                 else
                     e.CellStyle.ForeColor = Color.Green;

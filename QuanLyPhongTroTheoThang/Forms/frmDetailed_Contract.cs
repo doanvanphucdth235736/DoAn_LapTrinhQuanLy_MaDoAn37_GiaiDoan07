@@ -32,7 +32,6 @@ namespace QuanLyPhongTroTheoThang.Forms
         {
             try
             {
-                // Kiểm tra đầu vào cơ bản
                 if (cmbRoom.SelectedValue == null || cmbTenant.SelectedValue == null)
                 {
                     MessageBox.Show("Vui lòng chọn đầy đủ Phòng và Khách thuê!", "Cảnh báo");
@@ -45,21 +44,19 @@ namespace QuanLyPhongTroTheoThang.Forms
                 int.TryParse(txtWaterStart.Text, out int waterStart);
 
                 Contract contract;
-                if (_contractId == 0) // THÊM MỚI
+                if (_contractId == 0)
                 {
                     contract = new Contract();
                     context.Contracts.Add(contract);
 
-                    // Cập nhật phòng thành Đã thuê
                     var room = context.Rooms.Find(roomId);
                     if (room != null) room.Status = "Đã thuê";
                 }
-                else // SỬA
+                else 
                 {
                     contract = context.Contracts.Find(_contractId);
                     if (contract == null) return;
 
-                    // Nếu đổi phòng: Phòng cũ thành Trống, phòng mới thành Đã thuê
                     if (contract.RoomID != roomId)
                     {
                         var oldRoom = context.Rooms.Find(contract.RoomID);
@@ -70,7 +67,6 @@ namespace QuanLyPhongTroTheoThang.Forms
                     }
                 }
 
-                // Gán dữ liệu chung
                 contract.RoomID = roomId;
                 contract.TenantID = (int)cmbTenant.SelectedValue;
                 contract.StartDate = dtpStartDate.Value;
@@ -83,7 +79,8 @@ namespace QuanLyPhongTroTheoThang.Forms
                 contract.NumberOfOccupants = (int)nudNumberOfOccupants.Value;
                 contract.Notes = txtNotes.Text;
 
-                // Xử lý khi kết thúc hợp đồng
+                contract.CreatedBy = txtNhanVienLap.Text;
+
                 if (contract.ContractStatus == "Đã thanh lý" || contract.ContractStatus == "Đã hủy")
                 {
                     var room = context.Rooms.Find(contract.RoomID);
@@ -109,7 +106,6 @@ namespace QuanLyPhongTroTheoThang.Forms
             {
                 LoadContractData();
 
-                // NẾU LÀ CHẾ ĐỘ XEM THÌ KHÓA TẤT CẢ LẠI
                 if (_isViewMode)
                 {
                     this.Text = "Xem Chi Tiết Hợp Đồng";
@@ -124,6 +120,11 @@ namespace QuanLyPhongTroTheoThang.Forms
             {
                 this.Text = "Lập Hợp Đồng Mới";
                 cmbContractStatus.Text = "Đang hiệu lực";
+                txtNhanVienLap.Text = frmMain.TenNhanVienHienTai;
+                if (this.Tag != null)
+                {
+                    cmbRoom.SelectedValue = Convert.ToInt32(this.Tag);
+                }
             }
         }
 
@@ -131,14 +132,14 @@ namespace QuanLyPhongTroTheoThang.Forms
         {
             var rooms = context.Rooms.ToList();
             cmbRoom.DisplayMember = "RoomName";
-            cmbRoom.ValueMember = "RoomID"; // Gán trước
-            cmbRoom.DataSource = rooms;     // Gán DataSource sau
+            cmbRoom.ValueMember = "RoomID"; 
+            cmbRoom.DataSource = rooms;     
             cmbRoom.SelectedIndex = -1;
 
             var tenants = context.Tenants.ToList();
             cmbTenant.DisplayMember = "TenantName";
-            cmbTenant.ValueMember = "TenantID"; // Gán trước
-            cmbTenant.DataSource = tenants;     // Gán DataSource sau
+            cmbTenant.ValueMember = "TenantID"; 
+            cmbTenant.DataSource = tenants;     
             cmbTenant.SelectedIndex = -1;
 
             // Load Trạng thái
@@ -163,7 +164,9 @@ namespace QuanLyPhongTroTheoThang.Forms
                 cmbContractStatus.Text = contract.ContractStatus;
                 nudNumberOfOccupants.Value = contract.NumberOfOccupants > 0 ? contract.NumberOfOccupants : 1;
 
-                txtNotes.Text = contract.Notes; // Ô Ghi chú của bạn đang tên là textBox1
+                txtNotes.Text = contract.Notes;
+
+                txtNhanVienLap.Text = contract.CreatedBy;
             }
         }
 
@@ -173,17 +176,18 @@ namespace QuanLyPhongTroTheoThang.Forms
             cmbTenant.Enabled = false;
             dtpStartDate.Enabled = false;
             dtpEndDate.Enabled = false;
-            txtDeposit.ReadOnly = true;
-            txtPrice.ReadOnly = true;
-            txtElectricStart.ReadOnly = true;
-            txtWaterStart.ReadOnly = true;
+            txtDeposit.Enabled = false;
+            txtPrice.Enabled = false;
+            txtElectricStart.Enabled = false;
+            txtWaterStart.Enabled = false;
             nudPaymentDay.Enabled = false;
             cmbContractStatus.Enabled = false;
             nudNumberOfOccupants.Enabled = false;
-            txtNotes.ReadOnly = true;
+            txtNotes.Enabled = false;
+            txtNhanVienLap.Enabled = false;
 
-            btnLuu.Visible = false; // Ẩn nút Lưu
-            btnHuyBo.Text = "Đóng"; // Đổi chữ nút Hủy thành Đóng cho hợp lý
+            btnLuu.Visible = false; 
+            btnHuyBo.Text = "Đóng"; 
         }
 
         private void cmbTenant_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,22 +202,20 @@ namespace QuanLyPhongTroTheoThang.Forms
 
         private void cmbRoom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Kiểm tra an toàn: Đảm bảo có giá trị và ép kiểu int thành công
             if (cmbRoom.SelectedValue != null && int.TryParse(cmbRoom.SelectedValue.ToString(), out int roomId))
             {
-                // Chỉ điền giá lúc thêm mới hoặc khi người dùng chủ động bấm chọn
                 if (_contractId == 0 || cmbRoom.Focused)
                 {
                     var room = context.Rooms.Find(roomId);
                     if (room != null)
                     {
-                        txtPrice.Text = room.Price.ToString("N0"); // Dùng "N0" để hiển thị dấu chấm ngăn cách hàng nghìn (VD: 1.500.000)
+                        txtPrice.Text = room.Price.ToString("N0"); 
                     }
                 }
             }
             else
             {
-                txtPrice.Text = "0"; // Trả về 0 nếu chưa chọn phòng
+                txtPrice.Text = "0";
             }
         }
     }

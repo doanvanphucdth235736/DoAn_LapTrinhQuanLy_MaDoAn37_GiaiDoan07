@@ -53,6 +53,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(dgvTenant);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(2, 176);
@@ -65,16 +66,18 @@
             // dgvTenant
             // 
             dgvTenant.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvTenant.Location = new Point(0, 26);
+            dgvTenant.Dock = DockStyle.Fill;
+            dgvTenant.Location = new Point(3, 26);
             dgvTenant.Name = "dgvTenant";
             dgvTenant.RowHeadersVisible = false;
             dgvTenant.RowHeadersWidth = 51;
-            dgvTenant.Size = new Size(797, 247);
+            dgvTenant.Size = new Size(791, 244);
             dgvTenant.TabIndex = 0;
             dgvTenant.CellClick += dgvTenant_CellClick;
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(btnThoat);
             groupBox1.Controls.Add(btnHuyBo);
@@ -207,6 +210,7 @@
             // 
             // txtCCCD
             // 
+            txtCCCD.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtCCCD.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCCCD.Location = new Point(137, 104);
             txtCCCD.Name = "txtCCCD";
@@ -216,6 +220,7 @@
             // 
             // txtPhone
             // 
+            txtPhone.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtPhone.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhone.Location = new Point(137, 67);
             txtPhone.Name = "txtPhone";
@@ -255,6 +260,7 @@
             // 
             // txtTenantName
             // 
+            txtTenantName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtTenantName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTenantName.Location = new Point(137, 30);
             txtTenantName.Name = "txtTenantName";
@@ -272,6 +278,7 @@
             Name = "frmTenant";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Khách Hàng";
+            WindowState = FormWindowState.Maximized;
             Load += frmTenant_Load;
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTenant).EndInit();

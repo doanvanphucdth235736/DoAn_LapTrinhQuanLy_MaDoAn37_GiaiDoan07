@@ -199,7 +199,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             // btnChonAnh
             // 
-            btnChonAnh.Anchor = AnchorStyles.Top;
+            btnChonAnh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnChonAnh.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnChonAnh.Location = new Point(615, 27);
             btnChonAnh.Name = "btnChonAnh";
@@ -211,6 +211,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             // picRoomImage
             // 
+            picRoomImage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             picRoomImage.Location = new Point(492, 27);
             picRoomImage.Name = "picRoomImage";
             picRoomImage.Size = new Size(117, 108);
@@ -331,6 +332,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             Name = "frmRoom";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Phòng ";
+            WindowState = FormWindowState.Maximized;
             Load += frmRoom_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

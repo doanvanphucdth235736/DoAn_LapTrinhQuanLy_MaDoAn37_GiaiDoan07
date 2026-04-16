@@ -30,19 +30,19 @@
         {
             groupBox1 = new GroupBox();
             cboPosition = new ComboBox();
+            btnThoat = new Button();
             txtPassword = new TextBox();
+            btnHuyBo = new Button();
+            btnLuu = new Button();
             label4 = new Label();
+            btnXoa = new Button();
             txtUserName = new TextBox();
+            btnSua = new Button();
             label1 = new Label();
+            btnThem = new Button();
             label2 = new Label();
             label3 = new Label();
             txtFullName = new TextBox();
-            btnThoat = new Button();
-            btnHuyBo = new Button();
-            btnLuu = new Button();
-            btnXoa = new Button();
-            btnSua = new Button();
-            btnThem = new Button();
             groupBox2 = new GroupBox();
             dgvUser = new DataGridView();
             groupBox1.SuspendLayout();
@@ -52,24 +52,32 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(cboPosition);
+            groupBox1.Controls.Add(btnThoat);
             groupBox1.Controls.Add(txtPassword);
+            groupBox1.Controls.Add(btnHuyBo);
+            groupBox1.Controls.Add(btnLuu);
             groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(btnXoa);
             groupBox1.Controls.Add(txtUserName);
+            groupBox1.Controls.Add(btnSua);
             groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(btnThem);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(txtFullName);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(468, 194);
+            groupBox1.Size = new Size(702, 194);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông Tin Nhân Sự";
             // 
             // cboPosition
             // 
+            cboPosition.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cboPosition.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboPosition.FormattingEnabled = true;
             cboPosition.Location = new Point(127, 59);
@@ -77,13 +85,50 @@
             cboPosition.Size = new Size(183, 33);
             cboPosition.TabIndex = 24;
             // 
+            // btnThoat
+            // 
+            btnThoat.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnThoat.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThoat.Location = new Point(584, 136);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(94, 29);
+            btnThoat.TabIndex = 29;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // txtPassword
             // 
+            txtPassword.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtPassword.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.Location = new Point(127, 134);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(212, 31);
             txtPassword.TabIndex = 23;
+            // 
+            // btnHuyBo
+            // 
+            btnHuyBo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnHuyBo.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHuyBo.Location = new Point(584, 83);
+            btnHuyBo.Name = "btnHuyBo";
+            btnHuyBo.Size = new Size(94, 29);
+            btnHuyBo.TabIndex = 28;
+            btnHuyBo.Text = "Hủy bỏ";
+            btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.Click += btnHuyBo_Click;
+            // 
+            // btnLuu
+            // 
+            btnLuu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLuu.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLuu.Location = new Point(584, 33);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Size = new Size(94, 29);
+            btnLuu.TabIndex = 27;
+            btnLuu.Text = "Lưu";
+            btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // label4
             // 
@@ -95,13 +140,38 @@
             label4.TabIndex = 22;
             label4.Text = "Password:";
             // 
+            // btnXoa
+            // 
+            btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnXoa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnXoa.Location = new Point(478, 136);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(94, 29);
+            btnXoa.TabIndex = 26;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
             // txtUserName
             // 
+            txtUserName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtUserName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUserName.Location = new Point(127, 98);
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(294, 31);
             txtUserName.TabIndex = 21;
+            // 
+            // btnSua
+            // 
+            btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSua.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSua.Location = new Point(478, 83);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(94, 29);
+            btnSua.TabIndex = 25;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // label1
             // 
@@ -112,6 +182,18 @@
             label1.Size = new Size(94, 25);
             label1.TabIndex = 16;
             label1.Text = "Họ và Tên:";
+            // 
+            // btnThem
+            // 
+            btnThem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnThem.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThem.Location = new Point(478, 33);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(94, 29);
+            btnThem.TabIndex = 24;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // label2
             // 
@@ -136,86 +218,16 @@
             // 
             // txtFullName
             // 
+            txtFullName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtFullName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtFullName.Location = new Point(127, 22);
             txtFullName.Name = "txtFullName";
             txtFullName.Size = new Size(294, 31);
             txtFullName.TabIndex = 19;
             // 
-            // btnThoat
-            // 
-            btnThoat.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnThoat.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThoat.Location = new Point(599, 142);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(94, 29);
-            btnThoat.TabIndex = 29;
-            btnThoat.Text = "Thoát";
-            btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
-            // 
-            // btnHuyBo
-            // 
-            btnHuyBo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnHuyBo.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHuyBo.Location = new Point(599, 89);
-            btnHuyBo.Name = "btnHuyBo";
-            btnHuyBo.Size = new Size(94, 29);
-            btnHuyBo.TabIndex = 28;
-            btnHuyBo.Text = "Hủy bỏ";
-            btnHuyBo.UseVisualStyleBackColor = true;
-            btnHuyBo.Click += btnHuyBo_Click;
-            // 
-            // btnLuu
-            // 
-            btnLuu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnLuu.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLuu.Location = new Point(599, 39);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(94, 29);
-            btnLuu.TabIndex = 27;
-            btnLuu.Text = "Lưu";
-            btnLuu.UseVisualStyleBackColor = true;
-            btnLuu.Click += btnLuu_Click;
-            // 
-            // btnXoa
-            // 
-            btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnXoa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnXoa.Location = new Point(493, 142);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(94, 29);
-            btnXoa.TabIndex = 26;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSua.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSua.Location = new Point(493, 89);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(94, 29);
-            btnSua.TabIndex = 25;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
-            btnSua.Click += btnSua_Click;
-            // 
-            // btnThem
-            // 
-            btnThem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnThem.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThem.Location = new Point(493, 39);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(94, 29);
-            btnThem.TabIndex = 24;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
-            // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(dgvUser);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(3, 202);
@@ -228,10 +240,11 @@
             // dgvUser
             // 
             dgvUser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUser.Location = new Point(0, 23);
+            dgvUser.Dock = DockStyle.Fill;
+            dgvUser.Location = new Point(3, 26);
             dgvUser.Name = "dgvUser";
             dgvUser.RowHeadersWidth = 51;
-            dgvUser.Size = new Size(702, 223);
+            dgvUser.Size = new Size(696, 217);
             dgvUser.TabIndex = 0;
             // 
             // frmUser
@@ -240,15 +253,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(705, 450);
             Controls.Add(groupBox2);
-            Controls.Add(btnThoat);
-            Controls.Add(btnHuyBo);
-            Controls.Add(btnLuu);
-            Controls.Add(btnXoa);
-            Controls.Add(btnSua);
-            Controls.Add(btnThem);
             Controls.Add(groupBox1);
             Name = "frmUser";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Nhân Sự";
+            WindowState = FormWindowState.Maximized;
             Load += frmUser_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

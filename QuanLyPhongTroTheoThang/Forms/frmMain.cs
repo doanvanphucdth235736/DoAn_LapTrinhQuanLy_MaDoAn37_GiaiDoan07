@@ -11,44 +11,62 @@ using QuanLyPhongTroTheoThang.Data;
 
 namespace QuanLyPhongTroTheoThang.Forms
 {
+
     public partial class frmMain : Form
     {
         QLPTDbContext context = new QLPTDbContext();
-        private Form frmKhachHang_Con = null;
-        private Form frmPhong_Con = null;
-        private Form frmHopDong_Con = null;
-        private Form frmBill_Con = null;
-        private Form frmNhanSu_Con = null;
-        private Form frmThongKeBill_Con = null;
-        private Form frmThongKeHopDong_Con = null;
 
         private bool isExiting = false;
-
+        public static string UsernameHienTai { get; set; }
+        public static string TenNhanVienHienTai { get; set; }
         public frmMain()
         {
             InitializeComponent();
             this.FormClosing += frmMain_FormClosing;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
 
+            this.DoubleBuffered = true;
+
+            this.Resize += (s, e) =>
+            {
+                this.Refresh();
+            };
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             ChuaDangNhap();
         }
+
+        // --- HÀM HỖ TRỢ MỞ FORM CON ---
+        private void OpenChildForm(Form childForm)
+        {
+            // Kiểm tra xem form này đã được mở trước đó chưa
+            foreach (Form frm in this.MdiChildren)
+            {
+                // Nếu đã mở, thì kích hoạt (đưa lên mặt trước)
+                if (frm.GetType() == childForm.GetType())
+                {
+                    frm.Activate();
+                    return;
+                }
+            }
+
+            // Nếu chưa mở, thiết lập frmMain làm cha và hiển thị
+            childForm.MdiParent = this;
+            childForm.Show();
+        }
+        // ------------------------------
+
         public void ChuaDangNhap()
         {
-            // Bật/tắt menu Hệ thống
             mnuDangNhap.Enabled = true;
             mnuDangXuat.Enabled = false;
             mnuDoiMatKhau.Enabled = false;
 
-            // Ẩn hoàn toàn các menu nghiệp vụ
             mnuQuanLy.Visible = false;
             mnuBaoCaoThongKe.Visible = false;
 
-            // Trợ giúp và Thoát luôn hiện (không cần code đổi trạng thái)
-
-            // Cập nhật thanh trạng thái
             lblTrangThai.Text = "Chưa đăng nhập.";
         }
 
@@ -58,12 +76,12 @@ namespace QuanLyPhongTroTheoThang.Forms
             mnuDangXuat.Enabled = true;
             mnuDoiMatKhau.Enabled = true;
 
-            // Hiện full chức năng
             mnuQuanLy.Visible = true;
-            mnuNhanSu.Visible = true; // Admin có quản lý nhân sự
+            mnuNhanSu.Visible = true;
             mnuBaoCaoThongKe.Visible = true;
 
             lblTrangThai.Text = "Quản trị viên: " + tenNguoiDung;
+            OpenChildForm(new frmRoom_Map());
         }
 
         public void QuyenStaff(string tenNguoiDung)
@@ -78,6 +96,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             mnuBaoCaoThongKe.Visible = false;
 
             lblTrangThai.Text = "Nhân viên: " + tenNguoiDung;
+            OpenChildForm(new frmRoom_Map());
         }
 
         private void mnuDangXuat_Click(object sender, EventArgs e)
@@ -86,7 +105,6 @@ namespace QuanLyPhongTroTheoThang.Forms
             {
                 child.Close();
             }
-
             ChuaDangNhap();
         }
 
@@ -97,98 +115,65 @@ namespace QuanLyPhongTroTheoThang.Forms
 
         private void mnuKhachHang_Click(object sender, EventArgs e)
         {
-            if (frmKhachHang_Con == null || frmKhachHang_Con.IsDisposed)
-            {
-                frmKhachHang_Con = new frmTenant();
-                frmKhachHang_Con.MdiParent = this;
-                frmKhachHang_Con.Show();
-            }
-            else
-            {
-                frmKhachHang_Con.Activate();
-            }
+            OpenChildForm(new frmTenant());
         }
 
         private void mnuPhong_Click(object sender, EventArgs e)
         {
-            if (frmPhong_Con == null || frmPhong_Con.IsDisposed)
-            {
-                frmPhong_Con = new frmRoom();
-                frmPhong_Con.MdiParent = this;
-                frmPhong_Con.Show();
-            }
-            else frmPhong_Con.Activate();
+            OpenChildForm(new frmRoom());
         }
 
         private void mnuHopDong_Click(object sender, EventArgs e)
         {
-            if (frmHopDong_Con == null || frmHopDong_Con.IsDisposed)
-            {
-                frmHopDong_Con = new frmContract();
-                frmHopDong_Con.MdiParent = this;
-                frmHopDong_Con.Show();
-            }
-            else frmHopDong_Con.Activate();
+            OpenChildForm(new frmContract());
         }
 
         private void mnuNhanSu_Click(object sender, EventArgs e)
         {
-            if (frmNhanSu_Con == null || frmNhanSu_Con.IsDisposed)
-            {
-                frmNhanSu_Con = new frmUser();
-                frmNhanSu_Con.MdiParent = this;
-                frmNhanSu_Con.Show();
-            }
-            else frmNhanSu_Con.Activate();
+            OpenChildForm(new frmUser());
         }
 
         private void mnuBill_Click(object sender, EventArgs e)
         {
-            if (frmBill_Con == null || frmBill_Con.IsDisposed)
-            {
-                frmBill_Con = new frmBill();
-                frmBill_Con.MdiParent = this;
-                frmBill_Con.Show();
-            }
-            else frmBill_Con.Activate();
+            OpenChildForm(new frmBill());
         }
+        // -------------------------------------------------
 
         private void mnuThongKeBill_Click(object sender, EventArgs e)
         {
-
+            // OpenChildForm(new frmThongKeBill()); // Mở comment và sửa lại tên form khi bạn làm xong form này
         }
 
         private void mnuThongKeHopDong_Click(object sender, EventArgs e)
         {
-
+            // OpenChildForm(new frmThongKeHopDong());
         }
 
         private void mnuHuongDanSuDung_Click(object sender, EventArgs e)
         {
-
         }
 
         private void mnuThongTinPhanMem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void mnuDoiMatKhau_Click(object sender, EventArgs e)
         {
-
+            frmChangePassword f = new frmChangePassword(UsernameHienTai);
+            f.ShowDialog();
         }
 
         private void ThoatApp()
         {
             DialogResult result = MessageBox.Show(
-        "Bạn có chắc muốn thoát?",
-        "Xác nhận",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Question);
+                "Bạn có chắc muốn thoát?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                isExiting = true; // cho phép thoát thật
+                isExiting = true;
                 Application.Exit();
             }
         }
@@ -201,11 +186,16 @@ namespace QuanLyPhongTroTheoThang.Forms
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!isExiting) 
+            if (!isExiting)
             {
-                e.Cancel = true; 
-                ThoatApp();      
+                e.Cancel = true;
+                ThoatApp();
             }
+        }
+
+        private void sơĐồPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

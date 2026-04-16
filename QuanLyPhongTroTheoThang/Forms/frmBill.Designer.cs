@@ -44,6 +44,7 @@
             // 
             // dgvBill
             // 
+            dgvBill.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvBill.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBill.Location = new Point(0, 26);
             dgvBill.Name = "dgvBill";
@@ -55,7 +56,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnThoat.Anchor = AnchorStyles.Bottom;
             btnThoat.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThoat.Location = new Point(553, 303);
             btnThoat.Name = "btnThoat";
@@ -67,6 +68,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(dgvBill);
             groupBox2.Location = new Point(2, 2);
             groupBox2.Name = "groupBox2";
@@ -77,7 +79,7 @@
             // 
             // btnXuat
             // 
-            btnXuat.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnXuat.Anchor = AnchorStyles.Bottom;
             btnXuat.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnXuat.Location = new Point(905, 303);
             btnXuat.Name = "btnXuat";
@@ -89,7 +91,7 @@
             // 
             // btnTimKiem
             // 
-            btnTimKiem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnTimKiem.Anchor = AnchorStyles.Bottom;
             btnTimKiem.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnTimKiem.Location = new Point(805, 303);
             btnTimKiem.Name = "btnTimKiem";
@@ -101,7 +103,7 @@
             // 
             // btnInHD
             // 
-            btnInHD.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnInHD.Anchor = AnchorStyles.Bottom;
             btnInHD.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnInHD.Location = new Point(212, 303);
             btnInHD.Name = "btnInHD";
@@ -113,7 +115,7 @@
             // 
             // btnSua
             // 
-            btnSua.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSua.Anchor = AnchorStyles.Bottom;
             btnSua.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSua.Location = new Point(353, 303);
             btnSua.Name = "btnSua";
@@ -126,7 +128,7 @@
             // btnThemHD
             // 
             btnThemHD.AllowDrop = true;
-            btnThemHD.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnThemHD.Anchor = AnchorStyles.Bottom;
             btnThemHD.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThemHD.ForeColor = Color.Blue;
             btnThemHD.Location = new Point(24, 303);
@@ -139,7 +141,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnXoa.Anchor = AnchorStyles.Bottom;
             btnXoa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnXoa.Location = new Point(453, 303);
             btnXoa.Name = "btnXoa";
@@ -151,6 +153,7 @@
             // 
             // txtTimKiem
             // 
+            txtTimKiem.Anchor = AnchorStyles.Bottom;
             txtTimKiem.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTimKiem.Location = new Point(653, 303);
             txtTimKiem.Name = "txtTimKiem";
@@ -172,7 +175,9 @@
             Controls.Add(btnThemHD);
             Controls.Add(btnXoa);
             Name = "frmBill";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Hóa Đơn";
+            WindowState = FormWindowState.Maximized;
             Load += frmBill_Load;
             ((System.ComponentModel.ISupportInitialize)dgvBill).EndInit();
             groupBox2.ResumeLayout(false);

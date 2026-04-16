@@ -24,6 +24,7 @@ namespace QuanLyPhongTroTheoThang.Data
 
         public virtual Room Room { get; set; }
         public virtual Tenant Tenant { get; set; }
+        public string CreatedBy { get; set; }
 
         public virtual ICollection<Bill> Bills { get; set; }
     }

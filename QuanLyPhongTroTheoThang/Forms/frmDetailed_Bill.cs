@@ -28,55 +28,86 @@ namespace QuanLyPhongTroTheoThang.Forms
 
         private void frmDetailed_Bill_Load(object sender, EventArgs e)
         {
-            _isInitializing = true;
+            _isInitializing = true; 
+
 
             nudElectricOld.Maximum = 9999999;
             nudElectricNew.Maximum = 9999999;
             nudWaterOld.Maximum = 9999999;
             nudWaterNew.Maximum = 9999999;
 
+
             LoadContracts();
             SetupEventHandlers();
 
+
+            ConfigureUI();
+
+
             if (_billId.HasValue)
             {
-                if (_isViewOnly)
-                {
-                    this.Text = "Xem Chi Tiết Hóa Đơn";
-                    LockControls(); 
-                }
-                else
-                {
-                    this.Text = "Sửa Chi Tiết Hóa Đơn";
-                }
                 LoadBillDetails();
-            }
-            else
-            {
-                this.Text = "Lập Hóa Đơn Mới";
-                dtpMonth.Value = DateTime.Now;
             }
 
             _isInitializing = false;
         }
 
-        private void LockControls()
+        private void ConfigureUI()
         {
-            cboContract.Enabled = false;
-            dtpMonth.Enabled = false;
-            nudElectricOld.Enabled = false;
-            nudElectricNew.Enabled = false;
-            nudWaterOld.Enabled = false;
-            nudWaterNew.Enabled = false;
-            chkStatus.Enabled = false;
-            txtNotes.ReadOnly = true;
-            txtRoomName.ReadOnly = true;
-            txtTenantName.ReadOnly = true;
-            txtRoomPrice.ReadOnly = true;
-            txtTotal.ReadOnly = true;
 
-            btnLuu.Visible = false;
-            btnHuyBo.Text = "Đóng";
+            txtRoomName.Enabled = false;
+            txtTenantName.Enabled = false;
+            txtTotal.Enabled = false;
+
+            if (_billId.HasValue)
+            {
+                cboContract.Enabled = false;
+
+                if (_isViewOnly)
+                {
+                    this.Text = "Xem Chi Tiết Hóa Đơn";
+
+                    dtpMonth.Enabled = false;
+                    nudElectricOld.Enabled = false;
+                    nudElectricNew.Enabled = false;
+                    nudWaterOld.Enabled = false;
+                    nudWaterNew.Enabled = false;
+                    chkStatus.Enabled = false;
+                    txtNotes.Enabled = false;
+                    txtRoomPrice.Enabled = false;
+
+                    btnLuu.Visible = false;
+                    btnHuyBo.Text = "Đóng";
+                }
+                else
+                {
+                    this.Text = "Sửa Chi Tiết Hóa Đơn";
+                }
+            }
+            else
+            {
+                this.Text = "Lập Hóa Đơn Mới";
+
+                cboContract.Enabled = true;
+                dtpMonth.Value = DateTime.Now;
+                txtNhanVienLap.Text = frmMain.TenNhanVienHienTai;
+
+                if (this.Tag != null)
+                {
+                    int roomId = Convert.ToInt32(this.Tag);
+
+                    var activeContract = context.Contracts
+                        .Where(c => c.RoomID == roomId && c.ContractStatus != "Đã thanh lý" && c.ContractStatus != "Đã hủy")
+                        .OrderByDescending(c => c.ContractID)
+                        .FirstOrDefault();
+
+                    if (activeContract != null)
+                    {
+                        cboContract.SelectedValue = activeContract.ContractID;
+                        cboContract.Enabled = false;
+                    }
+                }
+            }
         }
 
         private void SetupEventHandlers()
@@ -86,7 +117,6 @@ namespace QuanLyPhongTroTheoThang.Forms
             nudWaterOld.ValueChanged += (s, ev) => CalculateTotal();
             nudWaterNew.ValueChanged += (s, ev) => CalculateTotal();
 
-            // MỚI THÊM: Gắn sự kiện khi đổi hợp đồng
             cboContract.SelectedIndexChanged += cboContract_SelectedIndexChanged;
         }
 
@@ -96,8 +126,7 @@ namespace QuanLyPhongTroTheoThang.Forms
                 .Select(c => new
         {
                     c.ContractID,
-                    // Thay đổi: Do đã có TextBox tên phòng và khách riêng,
-                    // ComboBox giờ chỉ cần hiển thị một thông tin đại diện, ví dụ "Hợp đồng số #ID"
+
                     DisplayText = "Hợp đồng #" + c.ContractID
                 })
                 .ToList();
@@ -113,8 +142,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             var bill = context.Bills.Find(_billId.Value);
             if (bill != null)
             {
-                // Khi gán giá trị này, CboContract_SelectedIndexChanged sẽ tự động chạy (do event đã được kích hoạt).
-                // Tuy nhiên nhờ có biến _isInitializing = true, dữ liệu Điện/Nước cũ sẽ không bị ghi đè.
+
                 cboContract.SelectedValue = bill.ContractID;
 
                 dtpMonth.Value = bill.Month;
@@ -125,6 +153,7 @@ namespace QuanLyPhongTroTheoThang.Forms
                 txtTotal.Text = bill.Total.ToString("N0");
                 chkStatus.Checked = bill.Status;
                 txtNotes.Text = bill.Notes ?? "";
+                txtNhanVienLap.Text = bill.CreatedBy;
             }
         }
 
@@ -136,7 +165,6 @@ namespace QuanLyPhongTroTheoThang.Forms
                 !int.TryParse(cboContract.SelectedValue.ToString(), out int contractId))
                 return;
 
-            // Sử dụng contractId đã lấy được an toàn
             var contract = context.Contracts
                 .Include(c => c.Room)
                 .FirstOrDefault(c => c.ContractID == contractId);
@@ -169,7 +197,6 @@ namespace QuanLyPhongTroTheoThang.Forms
         {
             CalculateTotal();
 
-            // Nếu người dùng chọn một hợp đồng hợp lệ
             if (cboContract.SelectedValue != null && int.TryParse(cboContract.SelectedValue.ToString(), out int contractId))
             {
                 var contract = context.Contracts
@@ -179,16 +206,13 @@ namespace QuanLyPhongTroTheoThang.Forms
 
                 if (contract != null)
                 {
-                    // 1. Tự động hiển thị Tên Phòng và Tên Khách
                     if (txtRoomName != null) txtRoomName.Text = contract.Room.RoomName;
                     if (txtTenantName != null) txtTenantName.Text = contract.Tenant.TenantName;
 
                     if (txtRoomPrice != null) txtRoomPrice.Text = contract.Room.Price.ToString("N0");
 
-                    // 2. Lấy chỉ số cũ (CHỈ THỰC HIỆN KHI KHÔNG PHẢI LÀ ĐANG LOAD FORM SỬA)
                     if (!_isInitializing)
                     {
-                        // Tìm hóa đơn gần nhất của hợp đồng này (sắp xếp theo tháng giảm dần)
                         var lastBill = context.Bills
                             .Where(b => b.ContractID == contractId)
                             .OrderByDescending(b => b.Month)
@@ -196,13 +220,11 @@ namespace QuanLyPhongTroTheoThang.Forms
 
                         if (lastBill != null)
                         {
-                            // Đã có hóa đơn trước đó -> Lấy số "Mới" của tháng trước làm số "Cũ" tháng này
                             nudElectricOld.Value = lastBill.ElectricNew;
                             nudWaterOld.Value = lastBill.WaterNew;
                         }
                         else
                         {
-                            // Chưa có hóa đơn nào -> Lấy số khởi tạo ghi trong Hợp đồng
                             nudElectricOld.Value = contract.ElectricStart;
                             nudWaterOld.Value = contract.WaterStart;
                         }
@@ -211,7 +233,6 @@ namespace QuanLyPhongTroTheoThang.Forms
             }
             else
             {
-                // Xóa trống nếu không chọn hợp đồng
                 if (txtRoomName != null) txtRoomName.Clear();
                 if (txtTenantName != null) txtTenantName.Clear();
             }
@@ -219,7 +240,6 @@ namespace QuanLyPhongTroTheoThang.Forms
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // Validate sơ bộ
             if (cboContract.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn hợp đồng/phòng!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -239,16 +259,11 @@ namespace QuanLyPhongTroTheoThang.Forms
                 var bill = context.Bills.Find(_billId.Value);
                 if (bill != null)
                 {
-                    // Cập nhật các trường còn thiếu
                     bill.Month = dtpMonth.Value;
                     bill.ElectricOld = (int)nudElectricOld.Value;
                     bill.ElectricNew = (int)nudElectricNew.Value;
                     bill.WaterOld = (int)nudWaterOld.Value;
                     bill.WaterNew = (int)nudWaterNew.Value;
-
-                    // QUAN TRỌNG: Nếu bạn đã thêm RoomPrice vào class Bill như tôi hướng dẫn trước đó
-                    // decimal.TryParse(txtPriceRoom.Text, out decimal rPrice);
-                    // bill.RoomPrice = rPrice; 
 
                     bill.Total = totalAmount;
                     bill.Status = chkStatus.Checked;
@@ -257,17 +272,20 @@ namespace QuanLyPhongTroTheoThang.Forms
             }
             else
             {
+                decimal.TryParse(txtRoomPrice.Text, out decimal roomPrice);
                 var newBill = new Bill
                 {
                     ContractID = (int)cboContract.SelectedValue,
                     Month = dtpMonth.Value,
+                    RoomPrice = roomPrice,
                     ElectricOld = (int)nudElectricOld.Value,
                     ElectricNew = (int)nudElectricNew.Value,
                     WaterOld = (int)nudWaterOld.Value,
                     WaterNew = (int)nudWaterNew.Value,
                     Total = totalAmount,
                     Status = chkStatus.Checked,
-                    Notes = txtNotes.Text
+                    Notes = txtNotes.Text,
+                    CreatedBy = txtNhanVienLap.Text
                 };
                 context.Bills.Add(newBill);
             }

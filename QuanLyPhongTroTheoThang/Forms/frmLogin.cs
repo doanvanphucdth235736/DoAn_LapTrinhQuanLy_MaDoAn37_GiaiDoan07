@@ -92,7 +92,6 @@ namespace QuanLyPhongTroTheoThang.Forms
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            // KIỂM TRA TRỐNG
             if (username == "" || username == "Username" || password == "" || password == "Password")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ tài khoản và mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -107,8 +106,9 @@ namespace QuanLyPhongTroTheoThang.Forms
                 {
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // GỌI PHÂN QUYỀN TRÊN CHÍNH FORM MAIN ĐANG MỞ
-                    if (user.Position == "Chủ trọ")
+                    frmMain.UsernameHienTai = user.Username;
+                    frmMain.TenNhanVienHienTai = user.FullName;
+                    if (user.Role == "Admin")
                     {
                         _mainForm.QuyenAdmin(user.FullName);
                     }
@@ -117,11 +117,10 @@ namespace QuanLyPhongTroTheoThang.Forms
                         _mainForm.QuyenStaff(user.FullName);
                     }
 
-                    this.Close(); // Đóng form login lại là xong, không tạo mới frmMain nữa
+                    this.Close(); 
                 }
                 else
                 {
-                    // THÔNG BÁO KHI SAI TÀI KHOẢN/MẬT KHẨU
                     MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     txtPassword.Clear();

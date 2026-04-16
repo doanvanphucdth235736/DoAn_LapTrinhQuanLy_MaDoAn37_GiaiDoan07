@@ -44,13 +44,19 @@ namespace QuanLyPhongTroTheoThang.Forms
             dgvContract.Columns.Add(new DataGridViewTextBoxColumn { Name = "EndDate", HeaderText = "Đến Ngày", DataPropertyName = "EndDate", DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" } });
             dgvContract.Columns.Add(new DataGridViewTextBoxColumn { Name = "Price", HeaderText = "Giá Thuê", DataPropertyName = "Price", DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" } });
             dgvContract.Columns.Add(new DataGridViewTextBoxColumn { Name = "ContractStatus", HeaderText = "Trạng Thái", DataPropertyName = "ContractStatus" });
-            DataGridViewButtonColumn btnViewCol = new DataGridViewButtonColumn();
-            btnViewCol.Name = "btnView";
-            btnViewCol.HeaderText = "Chi Tiết";
-            btnViewCol.Text = "Xem";
-            btnViewCol.UseColumnTextForButtonValue = true; 
-            btnViewCol.Width = 60;
-            dgvContract.Columns.Add(btnViewCol);
+            DataGridViewLinkColumn linkCol = new DataGridViewLinkColumn();
+            linkCol.Name = "btnView"; 
+            linkCol.HeaderText = "Chi Tiết";
+            linkCol.Text = "Xem";
+            linkCol.UseColumnTextForLinkValue = true;
+
+            linkCol.LinkBehavior = LinkBehavior.HoverUnderline;
+            linkCol.LinkColor = Color.FromArgb(0, 102, 255);
+            linkCol.ActiveLinkColor = Color.Red;
+
+            linkCol.Width = 60;
+            dgvContract.Columns.Add(linkCol);
+            dgvContract.Columns["btnView"].DisplayIndex = dgvContract.Columns.Count - 1;
         }
 
         private void LoadGrid()

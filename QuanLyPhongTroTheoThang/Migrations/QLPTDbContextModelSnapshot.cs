@@ -32,6 +32,10 @@ namespace QuanLyPhongTroTheoThang.Migrations
                     b.Property<int>("ContractID")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ElectricNew")
                         .HasColumnType("int");
 
@@ -78,6 +82,10 @@ namespace QuanLyPhongTroTheoThang.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContractID"));
 
                     b.Property<string>("ContractStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

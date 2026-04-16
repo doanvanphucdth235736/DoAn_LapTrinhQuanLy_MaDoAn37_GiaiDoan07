@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtNhanVienLap = new TextBox();
+            label15 = new Label();
             txtNotes = new TextBox();
             label12 = new Label();
             nudNumberOfOccupants = new NumericUpDown();
@@ -67,6 +69,8 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(txtNhanVienLap);
+            groupBox1.Controls.Add(label15);
             groupBox1.Controls.Add(txtNotes);
             groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(nudNumberOfOccupants);
@@ -93,8 +97,30 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông Tin Hợp Đồng";
             // 
+            // txtNhanVienLap
+            // 
+            txtNhanVienLap.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtNhanVienLap.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNhanVienLap.Location = new Point(152, 261);
+            txtNhanVienLap.Name = "txtNhanVienLap";
+            txtNhanVienLap.ReadOnly = true;
+            txtNhanVienLap.Size = new Size(277, 31);
+            txtNhanVienLap.TabIndex = 38;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.Transparent;
+            label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.Location = new Point(26, 264);
+            label15.Name = "label15";
+            label15.Size = new Size(124, 25);
+            label15.TabIndex = 37;
+            label15.Text = "Nhân viên lập:";
+            // 
             // txtNotes
             // 
+            txtNotes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtNotes.Location = new Point(107, 301);
             txtNotes.Name = "txtNotes";
             txtNotes.Size = new Size(679, 30);
@@ -112,6 +138,7 @@
             // 
             // nudNumberOfOccupants
             // 
+            nudNumberOfOccupants.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             nudNumberOfOccupants.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nudNumberOfOccupants.Location = new Point(636, 259);
             nudNumberOfOccupants.Name = "nudNumberOfOccupants";
@@ -120,6 +147,7 @@
             // 
             // nudPaymentDay
             // 
+            nudPaymentDay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             nudPaymentDay.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             nudPaymentDay.Location = new Point(636, 219);
             nudPaymentDay.Name = "nudPaymentDay";
@@ -128,6 +156,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.Location = new Point(444, 261);
@@ -138,6 +167,7 @@
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(444, 221);
@@ -158,6 +188,7 @@
             // 
             // cmbContractStatus
             // 
+            cmbContractStatus.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbContractStatus.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbContractStatus.FormattingEnabled = true;
             cmbContractStatus.Location = new Point(135, 218);
@@ -167,6 +198,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox3.Controls.Add(txtElectricStart);
             groupBox3.Controls.Add(txtWaterStart);
             groupBox3.Controls.Add(label7);
@@ -269,6 +301,7 @@
             // 
             // txtDeposit
             // 
+            txtDeposit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtDeposit.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDeposit.Location = new Point(606, 65);
             txtDeposit.Name = "txtDeposit";
@@ -277,6 +310,7 @@
             // 
             // txtPrice
             // 
+            txtPrice.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPrice.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrice.Location = new Point(606, 26);
             txtPrice.Name = "txtPrice";
@@ -285,6 +319,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(444, 68);
@@ -295,6 +330,7 @@
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(444, 29);
@@ -325,6 +361,7 @@
             // 
             // cmbRoom
             // 
+            cmbRoom.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbRoom.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbRoom.FormattingEnabled = true;
             cmbRoom.Location = new Point(135, 65);
@@ -335,6 +372,7 @@
             // 
             // cmbTenant
             // 
+            cmbTenant.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbTenant.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbTenant.FormattingEnabled = true;
             cmbTenant.Location = new Point(135, 26);
@@ -376,7 +414,9 @@
             Controls.Add(btnLuu);
             Controls.Add(groupBox1);
             Name = "frmDetailed_Contract";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Hợp Đồng Chi Tiết";
+            WindowState = FormWindowState.Maximized;
             Load += frmDetailed_Contract_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -420,5 +460,7 @@
         private Label label12;
         private Button btnHuyBo;
         private Button btnLuu;
+        private TextBox txtNhanVienLap;
+        private Label label15;
     }
 }

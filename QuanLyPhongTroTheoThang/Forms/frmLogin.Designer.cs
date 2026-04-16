@@ -112,10 +112,10 @@
             // txtPassword
             // 
             txtPassword.Anchor = AnchorStyles.None;
-            txtPassword.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.Location = new Point(64, 93);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(208, 38);
+            txtPassword.Size = new Size(208, 31);
             txtPassword.TabIndex = 1;
             txtPassword.Enter += txtPassword_Enter;
             txtPassword.Leave += txtPassword_Leave;
@@ -123,10 +123,10 @@
             // txtUsername
             // 
             txtUsername.Anchor = AnchorStyles.None;
-            txtUsername.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsername.Location = new Point(64, 42);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(208, 38);
+            txtUsername.Size = new Size(208, 31);
             txtUsername.TabIndex = 0;
             txtUsername.Enter += txtUsername_Enter;
             txtUsername.Leave += txtUsername_Leave;
@@ -139,7 +139,9 @@
             ClientSize = new Size(800, 450);
             Controls.Add(pnlLogin);
             Name = "frmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng Nhập";
+            WindowState = FormWindowState.Maximized;
             Load += frmLogin_Load;
             Resize += frmLogin_Resize;
             pnlLogin.ResumeLayout(false);

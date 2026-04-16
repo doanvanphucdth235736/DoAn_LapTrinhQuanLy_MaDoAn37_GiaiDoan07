@@ -36,7 +36,6 @@ namespace QuanLyPhongTroTheoThang.Forms
             btnXuat = new Button();
             btnXoa = new Button();
             btnSua = new Button();
-            btnInHD = new Button();
             btnLapHD = new Button();
             txtTimKiem = new TextBox();
             groupBox2.SuspendLayout();
@@ -70,7 +69,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             btnThoat.Anchor = AnchorStyles.Bottom;
             btnThoat.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThoat.Location = new Point(556, 303);
+            btnThoat.Location = new Point(475, 304);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 31;
@@ -82,7 +81,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             btnTimKiem.Anchor = AnchorStyles.Bottom;
             btnTimKiem.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnTimKiem.Location = new Point(809, 303);
+            btnTimKiem.Location = new Point(728, 304);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(94, 29);
             btnTimKiem.TabIndex = 30;
@@ -94,7 +93,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             btnXuat.Anchor = AnchorStyles.Bottom;
             btnXuat.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnXuat.Location = new Point(909, 303);
+            btnXuat.Location = new Point(828, 304);
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(121, 29);
             btnXuat.TabIndex = 29;
@@ -106,7 +105,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             btnXoa.Anchor = AnchorStyles.Bottom;
             btnXoa.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnXoa.Location = new Point(456, 303);
+            btnXoa.Location = new Point(375, 304);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(94, 29);
             btnXoa.TabIndex = 26;
@@ -118,7 +117,7 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             btnSua.Anchor = AnchorStyles.Bottom;
             btnSua.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSua.Location = new Point(356, 303);
+            btnSua.Location = new Point(275, 304);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(94, 29);
             btnSua.TabIndex = 25;
@@ -126,25 +125,13 @@ namespace QuanLyPhongTroTheoThang.Forms
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
             // 
-            // btnInHD
-            // 
-            btnInHD.Anchor = AnchorStyles.Bottom;
-            btnInHD.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnInHD.Location = new Point(215, 303);
-            btnInHD.Name = "btnInHD";
-            btnInHD.Size = new Size(135, 29);
-            btnInHD.TabIndex = 24;
-            btnInHD.Text = "In Hợp Đồng...";
-            btnInHD.UseVisualStyleBackColor = true;
-            btnInHD.Click += btnInHD_Click;
-            // 
             // btnLapHD
             // 
             btnLapHD.AllowDrop = true;
             btnLapHD.Anchor = AnchorStyles.Bottom;
             btnLapHD.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLapHD.ForeColor = Color.Blue;
-            btnLapHD.Location = new Point(27, 303);
+            btnLapHD.Location = new Point(88, 304);
             btnLapHD.Name = "btnLapHD";
             btnLapHD.Size = new Size(182, 29);
             btnLapHD.TabIndex = 32;
@@ -154,8 +141,9 @@ namespace QuanLyPhongTroTheoThang.Forms
             // 
             // txtTimKiem
             // 
+            txtTimKiem.Anchor = AnchorStyles.Bottom;
             txtTimKiem.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTimKiem.Location = new Point(656, 303);
+            txtTimKiem.Location = new Point(575, 304);
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(145, 30);
             txtTimKiem.TabIndex = 33;
@@ -171,11 +159,12 @@ namespace QuanLyPhongTroTheoThang.Forms
             Controls.Add(groupBox2);
             Controls.Add(btnXuat);
             Controls.Add(btnTimKiem);
-            Controls.Add(btnInHD);
             Controls.Add(btnSua);
             Controls.Add(btnXoa);
             Name = "frmContract";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Hợp Đồng";
+            WindowState = FormWindowState.Maximized;
             Load += frmContract_Load;
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvContract).EndInit();
@@ -197,7 +186,6 @@ namespace QuanLyPhongTroTheoThang.Forms
         private Button btnXuat;
         private Button btnXoa;
         private Button btnSua;
-        private Button btnInHD;
         private Button btnLapHD;
         private TextBox txtTimKiem;
     }

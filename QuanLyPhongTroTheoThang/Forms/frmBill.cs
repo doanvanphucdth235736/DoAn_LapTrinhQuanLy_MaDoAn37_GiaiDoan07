@@ -16,23 +16,30 @@ namespace QuanLyPhongTroTheoThang.Forms
     public partial class frmBill : Form
     {
         QLPTDbContext context = new QLPTDbContext();
+        private string _filterRoomName = "";
 
-        public frmBill()
+        public frmBill(string filterRoomName = "")
         {
             InitializeComponent();
+            _filterRoomName = filterRoomName;
         }
 
         private void frmBill_Load(object sender, EventArgs e)
         {
             LoadGridBill();
             SetupGridAppearance();
+
+            if (!string.IsNullOrEmpty(_filterRoomName))
+            {
+                txtTimKiem.Text = _filterRoomName;
+                btnTimKiem_Click(null, null); 
+            }
         }
 
         private void LoadGridBill()
         {
             try
             {
-                // Lấy danh sách hóa đơn kèm thông tin Hợp đồng -> Phòng và Khách thuê
                 var billList = context.Bills
                     .Include(b => b.Contract).ThenInclude(c => c.Room)
                     .Include(b => b.Contract).ThenInclude(c => c.Tenant)
@@ -67,19 +74,24 @@ namespace QuanLyPhongTroTheoThang.Forms
                 dgvBill.Columns["TongTien"].HeaderText = "Tổng Tiền (VNĐ)";
                 dgvBill.Columns["TongTien"].DefaultCellStyle.Format = "N0";
                 dgvBill.Columns["TrangThai"].HeaderText = "Trạng Thái";
-
                 if (!dgvBill.Columns.Contains("btnChiTiet"))
                 {
-                    DataGridViewButtonColumn btnCol = new DataGridViewButtonColumn();
-                    btnCol.Name = "btnChiTiet";
-                    btnCol.HeaderText = "Chi Tiết";
-                    btnCol.Text = "Xem";
-                    btnCol.UseColumnTextForButtonValue = true; // Hiển thị chữ "Xem" lên tất cả các nút
-                    btnCol.Width = 80;
-                    dgvBill.Columns.Add(btnCol);
-                }
+                    DataGridViewLinkColumn linkCol = new DataGridViewLinkColumn();
+                    linkCol.Name = "btnChiTiet";           
+                    linkCol.HeaderText = "Chi Tiết";
+                    linkCol.Text = "Xem";                  
+                    linkCol.UseColumnTextForLinkValue = true; 
 
-                dgvBill.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    linkCol.LinkBehavior = LinkBehavior.HoverUnderline; 
+                    linkCol.LinkColor = Color.FromArgb(0, 102, 255);      
+                    linkCol.ActiveLinkColor = Color.Red;                
+
+                    linkCol.Width = 80;
+                    dgvBill.Columns.Add(linkCol);
+
+                    dgvBill.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+                dgvBill.Columns["btnChiTiet"].DisplayIndex = dgvBill.Columns.Count - 1;
                 dgvBill.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvBill.MultiSelect = false;
                 dgvBill.ReadOnly = true;
@@ -201,15 +213,27 @@ namespace QuanLyPhongTroTheoThang.Forms
 
         private void btnInHD_Click(object sender, EventArgs e)
         {
+            if (dgvBill.CurrentRow != null)
+            {
+                int billId = Convert.ToInt32(dgvBill.CurrentRow.Cells["BillID"].Value);
 
+                frmPrintPreview frm = new frmPrintPreview();
+
+                
+                frm.LoadHoaDon(billId);
+
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một hóa đơn trong danh sách để in!");
+            }
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            // Lấy từ khóa người dùng nhập vào
             string keyword = txtTimKiem.Text.Trim().ToLower();
 
-            // Nếu ô tìm kiếm trống, load lại toàn bộ danh sách hóa đơn
             if (string.IsNullOrEmpty(keyword))
             {
                 LoadGridBill();
@@ -218,7 +242,6 @@ namespace QuanLyPhongTroTheoThang.Forms
 
             try
             {
-                // Lọc dữ liệu theo Mã HĐ, Tên Phòng, hoặc Tên Khách Thuê
                 var filteredBills = context.Bills
                     .Include(b => b.Contract).ThenInclude(c => c.Room)
                     .Include(b => b.Contract).ThenInclude(c => c.Tenant)
@@ -239,11 +262,9 @@ namespace QuanLyPhongTroTheoThang.Forms
                     .OrderByDescending(x => x.BillID)
                     .ToList();
 
-                // Gán null trước để ép DataGridView làm mới lại hoàn toàn
                 dgvBill.DataSource = null;
                 dgvBill.DataSource = filteredBills;
 
-                // Cấu hình lại giao diện lưới vì gán null sẽ làm mất format cũ
                 SetupGridAppearance();
 
                 if (filteredBills.Count == 0)

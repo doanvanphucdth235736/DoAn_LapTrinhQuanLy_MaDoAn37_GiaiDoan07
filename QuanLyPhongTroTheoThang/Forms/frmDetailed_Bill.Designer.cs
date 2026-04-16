@@ -48,6 +48,8 @@
             label9 = new Label();
             groupBox3 = new GroupBox();
             groupBox1 = new GroupBox();
+            txtNhanVienLap = new TextBox();
+            label15 = new Label();
             txtRoomPrice = new TextBox();
             label14 = new Label();
             dtpMonth = new DateTimePicker();
@@ -73,6 +75,7 @@
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(589, 52);
@@ -83,6 +86,7 @@
             // 
             // label7
             // 
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(427, 52);
@@ -103,6 +107,7 @@
             // 
             // cboContract
             // 
+            cboContract.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cboContract.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboContract.FormattingEnabled = true;
             cboContract.Location = new Point(136, 26);
@@ -113,6 +118,7 @@
             // 
             // txtRoomName
             // 
+            txtRoomName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtRoomName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRoomName.Location = new Point(136, 63);
             txtRoomName.Name = "txtRoomName";
@@ -133,7 +139,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(29, 66);
+            label1.Location = new Point(10, 66);
             label1.Name = "label1";
             label1.Size = new Size(68, 25);
             label1.TabIndex = 0;
@@ -144,7 +150,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(29, 103);
+            label2.Location = new Point(10, 103);
             label2.Name = "label2";
             label2.Size = new Size(106, 25);
             label2.TabIndex = 1;
@@ -152,6 +158,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(43, 52);
@@ -162,6 +169,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(lblWaterUsed);
             groupBox2.Controls.Add(lblElectricUsed);
             groupBox2.Controls.Add(nudWaterNew);
@@ -176,7 +184,7 @@
             groupBox2.Controls.Add(label7);
             groupBox2.Controls.Add(label5);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox2.Location = new Point(2, 158);
+            groupBox2.Location = new Point(2, 199);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(797, 100);
             groupBox2.TabIndex = 19;
@@ -185,6 +193,7 @@
             // 
             // lblWaterUsed
             // 
+            lblWaterUsed.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblWaterUsed.AutoSize = true;
             lblWaterUsed.Location = new Point(535, 23);
             lblWaterUsed.Name = "lblWaterUsed";
@@ -203,6 +212,7 @@
             // 
             // nudWaterNew
             // 
+            nudWaterNew.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             nudWaterNew.Location = new Point(656, 50);
             nudWaterNew.Name = "nudWaterNew";
             nudWaterNew.Size = new Size(77, 30);
@@ -210,6 +220,7 @@
             // 
             // nudWaterOld
             // 
+            nudWaterOld.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             nudWaterOld.Location = new Point(481, 50);
             nudWaterOld.Name = "nudWaterOld";
             nudWaterOld.Size = new Size(77, 30);
@@ -224,6 +235,7 @@
             // 
             // nudElectricOld
             // 
+            nudElectricOld.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             nudElectricOld.Location = new Point(97, 50);
             nudElectricOld.Name = "nudElectricOld";
             nudElectricOld.Size = new Size(77, 30);
@@ -231,6 +243,7 @@
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(405, 23);
@@ -260,6 +273,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(txtNhanVienLap);
+            groupBox1.Controls.Add(label15);
             groupBox1.Controls.Add(txtRoomPrice);
             groupBox1.Controls.Add(label14);
             groupBox1.Controls.Add(dtpMonth);
@@ -274,14 +290,35 @@
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(2, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(797, 150);
+            groupBox1.Size = new Size(797, 191);
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông Tin Chung";
             // 
+            // txtNhanVienLap
+            // 
+            txtNhanVienLap.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtNhanVienLap.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNhanVienLap.Location = new Point(136, 137);
+            txtNhanVienLap.Name = "txtNhanVienLap";
+            txtNhanVienLap.ReadOnly = true;
+            txtNhanVienLap.Size = new Size(359, 31);
+            txtNhanVienLap.TabIndex = 27;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.Transparent;
+            label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.Location = new Point(10, 140);
+            label15.Name = "label15";
+            label15.Size = new Size(124, 25);
+            label15.TabIndex = 26;
+            label15.Text = "Nhân viên lập:";
+            // 
             // txtRoomPrice
             // 
-            txtRoomPrice.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtRoomPrice.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtRoomPrice.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtRoomPrice.Location = new Point(611, 23);
             txtRoomPrice.Name = "txtRoomPrice";
@@ -290,6 +327,7 @@
             // 
             // label14
             // 
+            label14.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.Location = new Point(507, 26);
@@ -300,6 +338,7 @@
             // 
             // dtpMonth
             // 
+            dtpMonth.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dtpMonth.CalendarFont = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpMonth.CustomFormat = "MM/yyyy";
             dtpMonth.Format = DateTimePickerFormat.Custom;
@@ -312,6 +351,7 @@
             // 
             // chkStatus
             // 
+            chkStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chkStatus.AutoSize = true;
             chkStatus.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chkStatus.Location = new Point(571, 99);
@@ -323,6 +363,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.Location = new Point(524, 64);
@@ -333,6 +374,7 @@
             // 
             // txtTenantName
             // 
+            txtTenantName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtTenantName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTenantName.Location = new Point(136, 100);
             txtTenantName.Name = "txtTenantName";
@@ -343,7 +385,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(29, 29);
+            label8.Location = new Point(10, 29);
             label8.Name = "label8";
             label8.Size = new Size(101, 25);
             label8.TabIndex = 19;
@@ -353,7 +395,7 @@
             // 
             btnHuyBo.Anchor = AnchorStyles.Top;
             btnHuyBo.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHuyBo.Location = new Point(407, 386);
+            btnHuyBo.Location = new Point(407, 427);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(90, 29);
             btnHuyBo.TabIndex = 21;
@@ -365,7 +407,7 @@
             // 
             btnLuu.Anchor = AnchorStyles.Top;
             btnLuu.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLuu.Location = new Point(307, 386);
+            btnLuu.Location = new Point(307, 427);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(90, 29);
             btnLuu.TabIndex = 20;
@@ -375,13 +417,14 @@
             // 
             // groupBox4
             // 
+            groupBox4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox4.Controls.Add(label13);
             groupBox4.Controls.Add(txtTotal);
             groupBox4.Controls.Add(label12);
             groupBox4.Controls.Add(txtNotes);
             groupBox4.Controls.Add(label4);
             groupBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox4.Location = new Point(2, 264);
+            groupBox4.Location = new Point(2, 305);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(797, 116);
             groupBox4.TabIndex = 22;
@@ -390,6 +433,7 @@
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 8F);
             label13.Location = new Point(554, 87);
@@ -400,6 +444,7 @@
             // 
             // txtTotal
             // 
+            txtTotal.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             txtTotal.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotal.Location = new Point(456, 37);
             txtTotal.Name = "txtTotal";
@@ -408,6 +453,7 @@
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Top;
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label12.Location = new Point(554, 9);
@@ -418,8 +464,9 @@
             // 
             // txtNotes
             // 
+            txtNotes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             txtNotes.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNotes.Location = new Point(29, 54);
+            txtNotes.Location = new Point(26, 54);
             txtNotes.Name = "txtNotes";
             txtNotes.Size = new Size(410, 31);
             txtNotes.TabIndex = 17;
@@ -428,14 +475,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 426);
+            ClientSize = new Size(800, 472);
             Controls.Add(groupBox4);
             Controls.Add(btnHuyBo);
             Controls.Add(btnLuu);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmDetailed_Bill";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Hóa Đơn Chi Tiết";
+            WindowState = FormWindowState.Maximized;
             Load += frmDetailed_Bill_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -485,5 +534,7 @@
         private Label lblWaterUsed;
         private TextBox txtRoomPrice;
         private Label label14;
+        private TextBox txtNhanVienLap;
+        private Label label15;
     }
 }

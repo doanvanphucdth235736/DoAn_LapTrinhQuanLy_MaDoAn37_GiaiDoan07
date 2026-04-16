@@ -18,7 +18,8 @@ namespace QuanLyPhongTroTheoThang.Data
         public decimal Total { get; set; }
         public bool Status { get; set; }
         public string Notes { get; set; }
-        public decimal RoomPrice { get; set; } 
+        public decimal RoomPrice { get; set; }
+        public string CreatedBy { get; set; }
 
         public virtual Contract Contract { get; set; }
     }
